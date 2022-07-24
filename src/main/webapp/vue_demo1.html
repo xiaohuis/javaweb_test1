@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    <!--<a :href="url">点赞</a>
+  <input v-model="url">
+  {{url}}-->
+
+   <!-- <input type="button" value="按钮" @click="show()">-->
+
+    <!--<div v-if="count == 3">div1</div>
+    <div v-else-if="count == 4">div2</div>
+    <div v-else>div3</div>
+    <hr>
+    <div v-show="count == 4">div v-show</div>-->
+
+    <div v-for="addr in addrs">{{addr}} <br></div>
+
+</div>
+<script src="js/vue.js"></script>
+<script>
+  new Vue({
+    el:"#app",
+    data(){
+      return{
+        username:"",
+          url:"https://www.baidu.com",
+          count:4,
+          addrs:["北京","广东","a"]
+      }
+    },
+      methods:{
+        show(){
+            alert("sss")
+        }
+      },
+      mounted(){
+        alert("aa")
+      }
+    /*data:function () {
+      return{
+        username:""
+      }
+    }*/
+  });
+</script>
+</body>
+</html>

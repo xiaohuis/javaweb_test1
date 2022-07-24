@@ -6,23 +6,49 @@
     <title>添加品牌</title>
 </head>
 <body>
+<div id="app">
 <h3>添加品牌</h3>
 <form action="" method="post">
-    品牌名称：<input id="brandName" name="brandName"><br>
-    企业名称：<input id="companyName" name="companyName"><br>
-    排序：<input id="ordered" name="ordered"><br>
-    描述信息：<textarea rows="5" cols="20" id="description" name="description"></textarea><br>
+    品牌名称：<input id="brandName" v-model="brand.brandName" name="brandName"><br>
+    企业名称：<input id="companyName" v-model="brand.companyName" name="companyName"><br>
+    排序：<input id="ordered" v-model="brand.ordered" name="ordered"><br>
+    描述信息：<textarea rows="5" cols="20" id="description" v-model="brand.description" name="description"></textarea><br>
     状态：
-    <input type="radio" name="status" value="0">禁用
-    <input type="radio" name="status" value="1">启用<br>
+    <input type="radio" name="status" v-model="brand.status" value="0">禁用
+    <input type="radio" name="status" v-model="brand.status" value="1">启用<br>
 
-    <input type="button" id="btn"  value="提交">
+    <input type="button" id="btu" @click="submitForm" value="提交">
 </form>
-
+</div>
 <script src="js/axios-0.18.0.js"></script>
+<script src="js/vue.js"></script>
 
 <script>
-    document.getElementById("btn").onclick = function () {
+
+    new Vue({
+        el:"#app",
+        data(){
+            return{
+                brand:{}
+            }
+        },
+        methods:{
+            submitForm(){
+                var _this = this;
+                axios({
+                    method:"post",
+                    url:"/tets1_war/AddServlets",
+                    data:_this.brand
+                }).then(function (resp) {
+                    if(resp.data == "success"){
+                        location.href = "/tets1_war/brand.html"
+                    }
+                })
+            }
+        }
+    })
+
+   /* document.getElementById("btn").onclick = function () {
         var  formData = {
             brandName:"",
             companyName:"",
@@ -54,7 +80,7 @@
                 location.href = "/tets1_war/brand.html"
             }
         })
-    }
+    }*/
 </script>
 </body>
 </html>
